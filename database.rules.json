@@ -4,7 +4,7 @@
     "profiles": {
       "$uid": {
         ".write": "auth != null && (auth.uid === $uid || auth.uid === 'REPLACE_WITH_ADMIN_UID')",
-        ".validate": "newData.hasChildren(['name','phone','group','city','locality','role','health']) && newData.child('health').val() === true && (newData.child('verified').val() === data.child('verified').val() || auth.uid === 'REPLACE_WITH_ADMIN_UID')"
+        ".validate": "newData.hasChildren(['name','phone','group','city','locality','role','health']) && newData.child('health').val() === true && (newData.child('verified').val() === false || newData.child('verified').val() === data.child('verified').val() || auth.uid === 'REPLACE_WITH_ADMIN_UID')"
       }
     },
     "requests": {
@@ -16,7 +16,7 @@
     "responses": {
       "$requestId": {
         "$responseId": {
-          ".write": "auth != null && !data.exists() && root.child('requests').child($requestId).child('status').val() === 'open' && root.child('profiles').child(auth.uid).child('donor').val() === true && root.child('profiles').child(auth.uid).child('available').val() === true && root.child('profiles').child(auth.uid).child('group').val() === root.child('requests').child($requestId).child('group').val() && newData.child('uid').val() === auth.uid"
+          ".write": "auth != null && !data.exists() && root.child('requests').child($requestId).child('status').val() === 'open' && root.child('profiles').child(auth.uid).child('donor').val() === true && root.child('profiles').child(auth.uid).child('available').val() === true && root.child('profiles').child(auth.uid).child('group').val() === root.child('requests').child($requestId).child('group').val() && newData.child('uid').val() === auth.uid && $responseId === auth.uid && root.child('requests').child($requestId).child('requesterUid').val() !== auth.uid"
         }
       }
     },
@@ -28,7 +28,7 @@
     },
     "donations": {
       "$id": {
-        ".write": "auth != null && !data.exists() && root.child('profiles').child(auth.uid).child('verified').val() === true && newData.child('hospitalUid').val() === auth.uid && newData.child('status').val() === 'verified' && root.child('requests').child(newData.child('requestId').val()).exists()"
+        ".write": "auth != null && !data.exists() && $id === newData.child('requestId').val() + ':' + newData.child('donorUid').val() && root.child('requests').child(newData.child('requestId').val()).child('requesterUid').val() === auth.uid && root.child('responses').child(newData.child('requestId').val()).child(newData.child('offerId').val()).child('uid').val() === newData.child('donorUid').val() && newData.child('donorUid').isString() && newData.child('donorUid').val() !== auth.uid && newData.child('status').val() === 'verified'"
       }
     }
   }

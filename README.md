@@ -6,4 +6,4 @@ In Firebase Console, enable **Authentication → Google**, add the demo host to 
 
 The Google sign-in popup requires a permitted origin. Use the localhost URL printed by Vite for a local presentation. The Firebase configuration values are public client identifiers.
 
-The portal is for coordination. Donor self-attestation is not a medical eligibility test. Hospitals and blood banks must confirm screening, compatibility, and availability before transfusion. Points are awarded only when an approved hospital marks a donation complete. Portal alerts appear in the dashboard while signed in; no SMS or push delivery is configured.
+The portal is for coordination. Donor self-attestation is not a medical eligibility test. Hospitals and blood banks must confirm screening, compatibility, and availability before transfusion. Registration makes a donor discoverable. Each completed donation earns 100 points when the requester confirms the specific offer in My dashboard. Portal alerts appear in the dashboard while signed in; no SMS or push delivery is configured.
