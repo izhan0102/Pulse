@@ -15,3 +15,4 @@
 .request-strip h2 { margin:0 0 5px; font-size:1.35rem; }
 .btn-primary { background:#ad3240; box-shadow:none; }
 @media(max-width:600px){ .directory-head,.request-strip { align-items:flex-start; flex-direction:column; gap:16px; } .directory-head p,.request-strip p {font-size:.9375rem;} }
+.directory-hint { margin: 16px 0 0; color: #505d57; font-size: .9rem; }
